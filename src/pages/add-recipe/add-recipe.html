@@ -7,12 +7,50 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title align-items-start text-center>Add Recipe</ion-title>
+    <ion-title text-center>Add Recipe</ion-title>
+    <ion-buttons end style="color:transparent;">
+      itisempty
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <ion-label stacked>Name</ion-label>
+            <ion-input>{{ name }}</ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Description</ion-label>
+            <ion-input>{{ description }}</ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Difficulty</ion-label>
+            <ion-select [(ngModel)]="difficulty">
+              <ion-option value="easy">Easy</ion-option>
+              <ion-option value="medium">Medium</ion-option>
+              <ion-option value="hard">Hard</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button block outline (click)="presentActionSheet()">Manage Ingredients</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button block>New Recipe</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

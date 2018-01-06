@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ActionSheetController, IonicPage, NavController, NavParams } from 'ionic-angular';
 
 
 /**
@@ -16,11 +16,48 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AddRecipePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  name:string = '';
+  description:string = '';
+  difficulty:string = 'easy';
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private actionSheetCtrl: ActionSheetController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddRecipePage');
+  }
+
+  presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'What do you want to do?',
+      buttons: [
+        {
+          text: 'Add Ingredient',
+          handler: () => {
+            console.log('add ingredient clicked');
+          }
+        },
+        {
+          text: 'Remove All Ingredients',
+          role: 'destructive',
+          handler: () => {
+            console.log('remove all ingredients clicked');
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+
+    actionSheet.present();
   }
 
 }
