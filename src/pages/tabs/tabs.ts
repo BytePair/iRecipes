@@ -8,8 +8,8 @@ import { RecipesPage } from "../recipes/recipes";
 })
 export class TabsPage {
 
-  tab1Root = ShoppingListPage;
-  tab2Root = RecipesPage;
+  shoppingListRoot = ShoppingListPage;
+  recipesRoot = RecipesPage;
 
   constructor() {
 
