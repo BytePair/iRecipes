@@ -18,26 +18,44 @@
         <ion-label floating>Title</ion-label>
         <ion-input
           type="text"
-          formControlName="title"></ion-input>
+          formControlName="title"
+          required></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Description</ion-label>
         <ion-textarea
-          formControlName="description"></ion-textarea>
+          formControlName="description"
+          required></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-label floating>Difficulty</ion-label>
         <ion-select formControlName="difficulty">
           <ion-option
-            *ngFor="let d of selectDifficulty; let i = index"
+            *ngFor="let d of selectDifficulty"
             [value]="d">{{ d }}</ion-option>
         </ion-select>
       </ion-item>
     </ion-list>
+    <!-- Manage Ingredients Section -->
     <button
       ion-button
       block
-      type="submit">{{ mode }} Recipe</button>
+      outline
+      margin-bottom
+      type="button"
+      (click)="onManageIngredients()">Manage Ingredients</button>
+    <ion-list formArrayName="ingredients">
+      <ion-label *ngIf="recipeForm.get('ingredients').controls.length > 0">Ingredients:</ion-label>
+      <ion-item *ngFor="let igControl of recipeForm.get('ingredients').controls; let i = index">
+        <ion-input type="text" [formControlName]="i"></ion-input>
+      </ion-item>
+    </ion-list>
+    <!-- Submit Button -->
+    <button
+      ion-button
+      block
+      type="submit"
+      [disabled]="!recipeForm.valid">{{ mode }} Recipe</button>
   </form>
 
 </ion-content>
