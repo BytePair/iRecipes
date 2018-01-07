@@ -1,13 +1,7 @@
-<!--
-  Generated template for the AddRecipePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title text-center>Add Recipe</ion-title>
+    <ion-title text-center>{{ mode }} Recipe</ion-title>
     <ion-buttons end style="color:transparent;">
       itisempty
     </ion-buttons>
@@ -18,39 +12,32 @@
 
 <ion-content padding>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-list>
-          <ion-item>
-            <ion-label stacked>Name</ion-label>
-            <ion-input>{{ name }}</ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label stacked>Description</ion-label>
-            <ion-input>{{ description }}</ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label stacked>Difficulty</ion-label>
-            <ion-select [(ngModel)]="difficulty">
-              <ion-option value="easy">Easy</ion-option>
-              <ion-option value="medium">Medium</ion-option>
-              <ion-option value="hard">Hard</ion-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <button ion-button block outline (click)="presentActionSheet()">Manage Ingredients</button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <button ion-button block>New Recipe</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Title</ion-label>
+        <ion-input
+          type="text"
+          formControlName="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-textarea
+          formControlName="description"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Difficulty</ion-label>
+        <ion-select formControlName="difficulty">
+          <ion-option
+            *ngFor="let d of selectDifficulty; let i = index"
+            [value]="d">{{ d }}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <button
+      ion-button
+      block
+      type="submit">{{ mode }} Recipe</button>
+  </form>
 
 </ion-content>

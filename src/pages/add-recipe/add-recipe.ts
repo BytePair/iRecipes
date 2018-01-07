@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 
 /**
@@ -14,11 +15,11 @@ import { ActionSheetController, IonicPage, NavController, NavParams } from 'ioni
   selector: 'page-add-recipe',
   templateUrl: 'add-recipe.html',
 })
-export class AddRecipePage {
+export class AddRecipePage implements OnInit {
 
-  name:string = '';
-  description:string = '';
-  difficulty:string = 'easy';
+  mode:string = 'New';
+  selectDifficulty:string[] = ['Easy', 'Medium', 'Hard'];
+  recipeForm:FormGroup;
 
   constructor(
     public navCtrl: NavController,
@@ -26,38 +27,22 @@ export class AddRecipePage {
     private actionSheetCtrl: ActionSheetController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddRecipePage');
+  ngOnInit() {
+    this.mode = this.navParams.get('mode');
+    this.initializeForm();
   }
 
-  presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'What do you want to do?',
-      buttons: [
-        {
-          text: 'Add Ingredient',
-          handler: () => {
-            console.log('add ingredient clicked');
-          }
-        },
-        {
-          text: 'Remove All Ingredients',
-          role: 'destructive',
-          handler: () => {
-            console.log('remove all ingredients clicked');
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
+  private initializeForm() {
+    this.recipeForm = new FormGroup({
+      // FormControl() takes default value and validator
+      'title': new FormControl(null, Validators.required),
+      'description': new FormControl(null, Validators.required),
+      'difficulty': new FormControl(this.selectDifficulty[1], Validators.required)
+    })
+  }
 
-    actionSheet.present();
+  onSubmit() {
+    console.log(this.recipeForm);
   }
 
 }

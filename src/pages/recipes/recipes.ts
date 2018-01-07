@@ -26,7 +26,8 @@ export class RecipesPage {
   }
 
   onAddRecipe() {
-    this.navCtrl.push(AddRecipePage);
+    // set mode to 'New' so we kow if recipe already exists
+    this.navCtrl.push(AddRecipePage, {mode: 'New'});
   }
 
 }
