@@ -22,9 +22,7 @@ export class ShoppingListPage {
   }
 
   onAddItem(form: NgForm) {
-    // TODO: Fix form.value error
     this.shoppingListService.addIngredient(form.value.ingredientName, form.value.ingredientAmount);
-    // TODO: Fix form.reset() error
     form.reset();
     this.loadItems();
   }
