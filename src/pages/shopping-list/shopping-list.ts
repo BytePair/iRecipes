@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { Form } from "@angular/forms";
+import { NgForm } from "@angular/forms";
 import { ShoppingListService } from "../../services/shopping-list.service";
 import { Ingredient } from "../../models/ingredient";
 
@@ -21,7 +21,7 @@ export class ShoppingListPage {
     this.loadItems();
   }
 
-  onAddItem(form: Form) {
+  onAddItem(form: NgForm) {
     // TODO: Fix form.value error
     this.shoppingListService.addIngredient(form.value.ingredientName, form.value.ingredientAmount);
     // TODO: Fix form.reset() error

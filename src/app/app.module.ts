@@ -13,6 +13,8 @@ import { ShoppingListPage } from "../pages/shopping-list/shopping-list";
 import { RecipePage } from "../pages/recipe/recipe";
 import { ShoppingListService } from "../services/shopping-list.service";
 import { RecipeService } from "../services/recipe.service";
+import { SigninPage } from "../pages/signin/signin";
+import { SignupPage } from "../pages/signup/signup";
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { RecipeService } from "../services/recipe.service";
     RecipesPage,
     RecipePage,
     ShoppingListPage,
-    TabsPage
+    TabsPage,
+    SigninPage,
+    SignupPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,9 @@ import { RecipeService } from "../services/recipe.service";
     RecipesPage,
     RecipePage,
     ShoppingListPage,
-    TabsPage
+    TabsPage,
+    SigninPage,
+    SignupPage
   ],
   providers: [
     StatusBar,
