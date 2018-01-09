@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, PopoverController } from 'ionic-angular';
 import { NgForm } from "@angular/forms";
 import { ShoppingListService } from "../../services/shopping-list.service";
 import { Ingredient } from "../../models/ingredient";
+import { SlOptionsPage } from "./sl-options/sl-options";
 
 
 @IonicPage()
@@ -14,7 +15,9 @@ export class ShoppingListPage {
 
   listItems: Ingredient[];
 
-  constructor (private shoppingListService: ShoppingListService) {
+  constructor (
+    private shoppingListService: ShoppingListService,
+    private popOverCtrl: PopoverController) {
   }
 
   ionViewWillEnter() {
@@ -34,6 +37,14 @@ export class ShoppingListPage {
   onDeleteItem(index: number) {
     this.shoppingListService.removeIngredient(index);
     this.loadItems();
+  }
+
+  onShowOptions(event: MouseEvent) {
+    const popover = this.popOverCtrl.create(SlOptionsPage);
+    // mouse event has coordinates so popover knows where to appear
+    popover.present({
+      ev: event
+    });
   }
 
 }

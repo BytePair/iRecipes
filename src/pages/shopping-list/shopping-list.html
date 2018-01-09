@@ -12,8 +12,8 @@
     </button>
     <ion-title text-center>Shopping List</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only disabled color="transparent">
-        <ion-icon name="menu"></ion-icon>
+      <button ion-button icon-only (click)="onShowOptions($event)">
+        <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
 
