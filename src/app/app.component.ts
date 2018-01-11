@@ -36,6 +36,7 @@ export class MyApp {
       authDomain: "udemyrecipes.firebaseapp.com",
     });
 
+
     // handle authentication state changes
     firebase.auth().onAuthStateChanged(user => {
       // user is authenticated
